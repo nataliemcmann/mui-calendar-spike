@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 //import components
 import DatePickers from './DatePickers/DatePickers';
+import DateRender from './DateRender/DateRender';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
       <header className="App-header">
       </header>
       <DatePickers/>
+      <DateRender/>
     </div>
   );
 }

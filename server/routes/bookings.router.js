@@ -27,4 +27,22 @@ router.post('/', (req, res) => {
     })
 }); //end POST
 
+//start GET
+router.get('/', (req, res) => {
+    console.log('GET successful');
+    let sqlQuery = `
+    SELECT * FROM "bookings"
+    ORDER BY "id" DESC
+    `;
+    pool.query(sqlQuery)
+    .then((dbRes) => {
+        res.send(dbRes.rows);
+    })
+    .catch((dbErr) => {
+        console.log('GET route not working:', dbErr);
+        res.sendStatus(500);
+    })
+})
+//end GET
+
 module.exports = router;
