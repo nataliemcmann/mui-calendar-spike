@@ -6,7 +6,7 @@ run `npm install @mui/material @emotion/react @emotion/styled` in terminal
 -Install MUI X (just the date picker package):
 run `npm install @mui/x-date-picker`
 
--Install date libraby, Moment.js
-run `npm install moment`
+-Install date libraby, Luxon
+run `npm install --save luxon`
 
 #
