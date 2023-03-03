@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 //import mui components
 import { TextField, Button } from '@mui/material';
 //import dateAdapter for Luxon
@@ -24,9 +25,18 @@ function DatePickers() {
     function sendDates() {
         let dateObject = {
             checkIn,
-            checkIn
+            checkOut
         };
         console.log(dateObject);
+        axios.post('/bookings', 
+        {dateObject})
+        .then((res) => {
+            console.log('post request sent');
+        })
+        .catch((err) => {
+            console.log('post request failed', err);
+        })
+
     }
 
     return(
