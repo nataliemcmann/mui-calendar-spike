@@ -10,7 +10,7 @@ import { DateTime } from 'luxon';
 //MUI X components
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 
-function DatePickers() {
+function DatePickers({ getDates }) {
     const currentDate = DateTime.now();
     const minStayDate = currentDate.plus({months: 1});
 
@@ -32,6 +32,7 @@ function DatePickers() {
         {dateObject})
         .then((res) => {
             console.log('post request sent');
+            getDates();
         })
         .catch((err) => {
             console.log('post request failed', err);

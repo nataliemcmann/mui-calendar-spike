@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js')
+const reformatDate = require('../modules/reformatDate.js');
 
 //routes here
 
@@ -36,7 +37,8 @@ router.get('/', (req, res) => {
     `;
     pool.query(sqlQuery)
     .then((dbRes) => {
-        res.send(dbRes.rows);
+        let bookingsArray = reformatDate(dbRes.rows);
+        res.send(bookingsArray);
     })
     .catch((dbErr) => {
         console.log('GET route not working:', dbErr);

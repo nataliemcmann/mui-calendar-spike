@@ -1,37 +1,30 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 //luxon
 import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 //MUI X components
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { DateCalendar } from '@mui/x-date-pickers';
+import { DateCalendar, PickersDay } from '@mui/x-date-pickers';
 
 
-function DateRender() {
-    const [dates, setDates] = useState([]);
 
-    useEffect(() => {
-        getDates();
-    }, []);
+function DateRender({ dates }) {
 
-    const getDates = () => {
-        axios.get('/bookings')
-        .then((res) => {
-            console.log('GET request successful', res.data);
-        })
-        .catch((err) => {
-            console.log('Error in GET request', err);
-        })
-    }
+    // const initialDate = firstBooking.checkInDate;
+
+
 
     return(
         <>
             <LocalizationProvider dateAdapter={AdapterLuxon}>
-                <DateCalendar/>
+                <DateCalendar 
+                // defaultValue={initialDate} 
+                disabled
+                />
             </LocalizationProvider>
+            {/* <p>{dates[0].checkInDate}</p> */}
         </>
     );
 }
+
 
 export default DateRender;
