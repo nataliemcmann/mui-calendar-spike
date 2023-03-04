@@ -1,27 +1,32 @@
 import React from 'react';
+import { useState } from 'react';
 //luxon
 import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
+//import datetime form luxon
+import { DateTime } from 'luxon';
 //MUI X components
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { DateCalendar, PickersDay } from '@mui/x-date-pickers';
 
 
 
-function DateRender({ dates }) {
+function DateRender({ booking }) {
+    const sqlDate = booking.checkInDate;
+    const luxonDate = DateTime.fromSQL(sqlDate);
 
-    // const initialDate = firstBooking.checkInDate;
-
-
+    const [initialDate, setInitial] = useState(luxonDate);
 
     return(
         <>
             <LocalizationProvider dateAdapter={AdapterLuxon}>
                 <DateCalendar 
-                // defaultValue={initialDate} 
+                value={initialDate}
+                onChange={(newDate) => {
+                    setInitial(newDate);
+                }} 
                 disabled
                 />
             </LocalizationProvider>
-            {/* <p>{dates[0].checkInDate}</p> */}
         </>
     );
 }

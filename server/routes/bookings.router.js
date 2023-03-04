@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js')
-const reformatDate = require('../modules/reformatDate.js');
+// const reformatDate = require('../modules/reformatDate.js');
 
 //routes here
 
@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
     `;
     pool.query(sqlQuery)
     .then((dbRes) => {
-        let bookingsArray = reformatDate(dbRes.rows);
+        let bookingsArray = dbRes.rows;
         res.send(bookingsArray);
     })
     .catch((dbErr) => {

@@ -7,30 +7,41 @@ import DatePickers from './DatePickers/DatePickers';
 import DateRender from './DateRender/DateRender';
 
 function App() {
-  const [dates, setDates] = useState([]);
+const [bookingList, setBookingList] = useState([]);
 
-  useEffect(() => {
-      getDates();
-  }, []);
+useEffect(() => {
+  getBookings();
+}, [])
 
-  const getDates = () => {
-      axios.get('/bookings')
-      .then((res) => {
-          console.log('GET request successful', res.data);
-          setDates(res.data);
-          console.log(dates);
-      })
-      .catch((err) => {
-          console.log('Error in GET request', err);
-      })
-  }
+function getBookings () {
+  axios.get('/bookings')
+  .then((res) => {
+    console.log(res.data);
+    setBookingList(res.data);
+  })
+  .catch((err) => {
+    console.log('GET failed', err);
+  })
+}
 
   return (
     <div className="App">
       <header className="App-header">
       </header>
-      <DatePickers getDates={getDates}/>
-      <DateRender dates={dates}/>
+      <DatePickers getBookings={getBookings}/>
+      <div>
+        {bookingList && bookingList.map(booking => (
+          <ul>
+            <li key={booking.id}>
+                <p>
+                Check In: {booking.checkInDate} and 
+                Check Out: {booking.checkOutDate}
+                </p>
+                <DateRender booking={booking}/>
+            </li>
+          </ul>
+        ))}
+      </div>
     </div>
   );
 }
