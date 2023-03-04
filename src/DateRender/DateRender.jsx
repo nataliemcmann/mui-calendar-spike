@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+//luxon
+import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 //MUI X components
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { DateCalendar } from '@mui/x-date-pickers';
 
 
 function DateRender() {
@@ -24,7 +27,9 @@ function DateRender() {
 
     return(
         <>
-            <DateCalendar/>
+            <LocalizationProvider dateAdapter={AdapterLuxon}>
+                <DateCalendar/>
+            </LocalizationProvider>
         </>
     );
 }
