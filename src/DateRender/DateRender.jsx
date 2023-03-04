@@ -6,7 +6,7 @@ import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 import { DateTime } from 'luxon';
 //MUI X components
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { DateCalendar, PickersDay } from '@mui/x-date-pickers';
+import { DateCalendar } from '@mui/x-date-pickers';
 
 
 
@@ -14,7 +14,9 @@ function DateRender({ booking }) {
     const sqlDate = booking.checkInDate;
     const luxonDate = DateTime.fromSQL(sqlDate);
 
-    const [initialDate, setInitial] = useState(luxonDate);
+    // const initialDate = firstBooking.checkInDate;
+
+
 
     return(
         <>
@@ -27,9 +29,9 @@ function DateRender({ booking }) {
                 disabled
                 />
             </LocalizationProvider>
+
         </>
     );
 }
-
 
 export default DateRender;
