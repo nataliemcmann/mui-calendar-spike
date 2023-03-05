@@ -43,7 +43,7 @@ function getBookings () {
           })}
         </ul>
       </div>
-      <DateRender />
+      <DateRender/>
     </div>
   );
 }
