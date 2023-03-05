@@ -1,8 +1,10 @@
 import './App.css';
 import React from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 //import components
 import DatePickers from './DatePickers/DatePickers';
-import DateRender from './DateRender/DateRender';
+// import DateRender from './DateRender/DateRender';
 
 function App() {
 const [bookingList, setBookingList] = useState([]);
@@ -26,8 +28,22 @@ function getBookings () {
     <div className="App">
       <header className="App-header">
       </header>
-      <DatePickers getDates={getDates}/>
-      <DateRender dates={dates}/>
+      <div>
+      <DatePickers getBookings={getBookings}/>
+      {/* <DateRender bookingList={bookingList}/> */}
+      </div>
+      <div>
+        <ul>
+          {bookingList && bookingList.map((booking) => {
+            return (
+              <li key={booking.id}>
+                Check In: {booking.checkInDate} and
+                Check Out: {booking.checkOutDate}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

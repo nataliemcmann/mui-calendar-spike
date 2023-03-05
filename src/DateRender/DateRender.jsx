@@ -10,13 +10,11 @@ import { DateCalendar } from '@mui/x-date-pickers';
 
 
 
-function DateRender({ booking }) {
-    const sqlDate = booking.checkInDate;
-    const luxonDate = DateTime.fromSQL(sqlDate);
+function DateRender({ bookingList }) {
+    const sqlDateCheckIn = bookingList[0].checkInDate;
+    const luxonDateCheckIn = DateTime.fromSQL(sqlDateCheckIn);
 
-    // const initialDate = firstBooking.checkInDate;
-
-
+    const [initialDate, setInitial] = useState(luxonDateCheckIn);
 
     return(
         <>
@@ -29,7 +27,6 @@ function DateRender({ booking }) {
                 disabled
                 />
             </LocalizationProvider>
-
         </>
     );
 }
