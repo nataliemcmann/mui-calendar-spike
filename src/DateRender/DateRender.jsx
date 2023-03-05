@@ -1,32 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
-//luxon
-import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
-//import datetime form luxon
-import { DateTime } from 'luxon';
-//MUI X components
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { DateCalendar } from '@mui/x-date-pickers';
+//react date picker
 
 
 
-function DateRender({ bookingList }) {
-    const sqlDateCheckIn = bookingList[0].checkInDate;
-    const luxonDateCheckIn = DateTime.fromSQL(sqlDateCheckIn);
+function DateRender() {
+    const [initialDate, setInitial] = useState(DateTime.fromISO('2023-03-04'))
+    const [endDate, setEnd] = useState(DateTime.fromISO('2023-04-04'));
+    const datesBetween = Interval.fromDateTimes(initialDate, endDate);
+    datesBetween.shift(initialDate);
+    datesBetween.push(endDate);
 
-    const [initialDate, setInitial] = useState(luxonDateCheckIn);
 
     return(
         <>
-            <LocalizationProvider dateAdapter={AdapterLuxon}>
-                <DateCalendar 
-                value={initialDate}
-                onChange={(newDate) => {
-                    setInitial(newDate);
-                }} 
-                disabled
-                />
-            </LocalizationProvider>
+            <h4>Render Date Range</h4>
         </>
     );
 }

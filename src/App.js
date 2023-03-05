@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 //import components
 import DatePickers from './DatePickers/DatePickers';
-// import DateRender from './DateRender/DateRender';
+import DateRender from './DateRender/DateRender';
 
 function App() {
 const [bookingList, setBookingList] = useState([]);
@@ -30,7 +30,6 @@ function getBookings () {
       </header>
       <div>
       <DatePickers getBookings={getBookings}/>
-      {/* <DateRender bookingList={bookingList}/> */}
       </div>
       <div>
         <ul>
@@ -44,6 +43,7 @@ function getBookings () {
           })}
         </ul>
       </div>
+      <DateRender />
     </div>
   );
 }
